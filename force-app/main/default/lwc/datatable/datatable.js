@@ -1,4 +1,4 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import findRecords from '@salesforce/apex/DatatableCtrl.fetchRecords';
 
 const columns = [
@@ -10,5 +10,7 @@ const columns = [
 ];
 
 export default class Datatable extends LightningElement {
-    @wire(findRecords, {objectName : 'Account', fields : ['Name','Phone', 'Type', 'Website'], noOfRecords : 100, filterCriteria : ''}) records;
+    @track columns = columns;
+    @wire(findRecords, {objectName : 'Account', fields : ['Name','Phone', 'Type', 'Website'], noOfRecords : 100, filterCriteria : ''}) records;    
+    
 }
